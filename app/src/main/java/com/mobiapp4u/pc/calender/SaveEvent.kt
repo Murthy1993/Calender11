@@ -27,7 +27,7 @@ class SaveEvent : AppCompatActivity() {
         imageView_date_picker.setOnClickListener {
             var listener = object : DatePickerDialog.OnDateSetListener {
                 override fun onDateSet(p0: DatePicker?, p1: Int, p2: Int, p3: Int) {
-                    editText_date.setText("$p3 - ${p2+1} - $p1")
+                    editText_date.setText("$p3 - ${p2 + 1} - $p1")
                     val simpledateformat = SimpleDateFormat("EEE")
                     val date = Date(p1, p2, p3 - 1)
                     dayMonth = "${p3}"
@@ -40,44 +40,57 @@ class SaveEvent : AppCompatActivity() {
             var month = cal.get(Calendar.MONTH)
             var day = cal.get(Calendar.DAY_OF_MONTH)
             // context,OnDateSetListener,year,month,day
-            var dpd = DatePickerDialog(this@SaveEvent, listener,
-                year,month,day)
+            var dpd = DatePickerDialog(
+                this@SaveEvent, listener,
+                year, month, day
+            )
             dpd.show()
         }
 
         imageView_time_picker.setOnClickListener {
             val cal = Calendar.getInstance()
-            val listener = object: TimePickerDialog.OnTimeSetListener{
+            val listener = object : TimePickerDialog.OnTimeSetListener {
                 override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-                    cal.set(Calendar.HOUR_OF_DAY,hourOfDay)
-                    cal.set(Calendar.MINUTE,minute)
-                    val time =     SimpleDateFormat("HH:mm a").format(cal.time)
+                    cal.set(Calendar.HOUR_OF_DAY, hourOfDay)
+                    cal.set(Calendar.MINUTE, minute)
+                    val time = SimpleDateFormat("HH:mm a").format(cal.time)
                     editText_time.setText(time)
                 }
 
             }
-            val timePkr = TimePickerDialog(this@SaveEvent, listener, cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE), true).show()
+            val timePkr = TimePickerDialog(
+                this@SaveEvent,
+                listener,
+                cal.get(Calendar.HOUR_OF_DAY),
+                cal.get(Calendar.MINUTE),
+                true
+            ).show()
         }
 
         //save event in to table
         button_save.setOnClickListener {
-            var cv = ContentValues()
-            cv.put("date",editText_date.text.toString())
-            cv.put("day_month",dayMonth)
-            cv.put("year_month",yearOfMonth)
-            cv.put("day_week",dayOfWeek)
-            cv.put("time",editText_time.text.toString())
-            cv.put("description",editText_event_desc.text.toString())
-            var actvity = Database(this)
-            var status = actvity.dBase!!.insert("event",null, cv)
-            if(status == -1L)
-            {
-                Toast.makeText(this@SaveEvent, "Save Event  is Failed", Toast.LENGTH_LONG).show()
+
+            if (editText_date.text.toString() == "" || editText_time.text.toString() == "" || editText_event_desc.text.toString() == "") {
+                Toast.makeText(this@SaveEvent, "Please Fill All Fields", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
             }else{
+              var cv = ContentValues()
+              cv.put("date", editText_date.text.toString())
+              cv.put("day_month", dayMonth)
+              cv.put("year_month", yearOfMonth)
+              cv.put("day_week", dayOfWeek)
+              cv.put("time", editText_time.text.toString())
+              cv.put("description", editText_event_desc.text.toString())
+              var actvity = Database(this)
+              var status = actvity.dBase!!.insert("event", null, cv)
+               if (status == -1L) {
+                Toast.makeText(this@SaveEvent, "Save Event  is Failed", Toast.LENGTH_LONG).show()
+               } else {
                 Toast.makeText(this@SaveEvent, "Data Insertion is Success", Toast.LENGTH_LONG).show()
                 editText_date.setText(""); editText_time.setText("");editText_event_desc.setText("")
-            }
-        }
+               }
+           }
+       }
 
     }
 }
