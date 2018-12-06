@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout1">
+    <android.support.v7.widget.CardView
+            android:id="@+id/cardView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="4dp"
+            app:contentPadding="16dp"
+            android:background="@android:color/white"
+    >
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+           <TextView
+                   android:layout_gravity="center"
+                   android:textSize="20sp"
+                   android:textColor="@android:color/holo_red_light"
+                   android:text="12-12-12"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:id="@+id/dateOfItem"
+                   android:textStyle="bold"
+           />
+            <LinearLayout
+                    android:layout_marginTop="8dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.2">
+                    <TextView
+                            android:textColor="#2285B6"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:text="THU"
+                            android:id="@+id/day_month"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+                    <TextView
+                            android:textStyle="bold"
+                            android:textColor="#2285B6"
+                            android:textAlignment="center"
+                            android:textSize="25sp"
+                            android:text="29"
+                            android:id="@+id/date_num"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                >
+                    <TextView
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:textSize="18sp"
+                            android:id="@+id/time"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.5"
+                            android:text="2:00AM"
+                    />
+                    <TextView
+                            android:textColor="#000"
+                            android:textStyle="bold"
+                            android:textAlignment="center"
+                            android:textSize="20sp"
+                            android:id="@+id/event_desc"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.75"
+                            android:text="Today Exam"
+                    />
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
